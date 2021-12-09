@@ -19,12 +19,21 @@ const style = {
   borderRadius: "5px",
 };
 
-function ModalSignIn() {
-  const [open, setOpen] = useState(false);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+function ModalSignIn({
+  open,
+  setOpen,
+  user,
+  setUser,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}) {
+  //   const [open, setOpen] = useState(false);
+  //   const [username, setUsername] = useState("");
+  //   const [email, setEmail] = useState("");
+  //   const [password, setPassword] = useState("");
+  //   const [user, setUser] = useState(null);
 
   const signIn = (event) => {
     event.preventDefault();

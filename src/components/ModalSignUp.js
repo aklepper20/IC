@@ -7,13 +7,25 @@ import Button from "@mui/material/Button";
 import { db, auth } from "../firebase";
 import ModalSignIn from "./ModalSignIn";
 
-function ModalSignUp() {
-  const [open, setOpen] = useState(false);
-  const [openSignIn, setOpenSignIn] = useState(false);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+function ModalSignUp({
+  open,
+  setOpen,
+  signUp,
+  signIn,
+  user,
+  setUser,
+  username,
+  setUsername,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}) {
+  // const [open, setOpen] = useState(false);
+  // const [openSignIn, setOpenSignIn] = useState(false);
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
   useEffect(() => {
     //listens for any user change/update it changes in db
@@ -46,20 +58,20 @@ function ModalSignUp() {
     borderRadius: "5px",
   };
 
-  const signUp = (event) => {
-    event.preventDefault();
+  // const signUp = (event) => {
+  //   event.preventDefault();
 
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((authUser) => {
-        return authUser.user.updateProfile({
-          displayName: username,
-        });
-      })
-      .catch((error) => alert(error.message));
+  //   auth
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .then((authUser) => {
+  //       return authUser.user.updateProfile({
+  //         displayName: username,
+  //       });
+  //     })
+  //     .catch((error) => alert(error.message));
 
-    setOpen(false);
-  };
+  //   setOpen(false);
+  // };
 
   return (
     <>
@@ -103,7 +115,17 @@ function ModalSignUp() {
         <Button onClick={() => auth.signOut()}>LOGOUT</Button>
       ) : (
         <LoginContainer>
-          <ModalSignIn />
+          <ModalSignIn
+            signIn={signIn}
+            open={open}
+            setOpen={setOpen}
+            user={user}
+            setUser={setUser}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+          />
           <Button onClick={() => setOpen(true)}>SignUp</Button>
         </LoginContainer>
       )}
