@@ -17,14 +17,16 @@ function App() {
   useEffect(() => {
     //everytime the db is changed or modified fire off this code again and upload
     //when page load it will map through db colection and pull every doc from there
-    db.collection("posts").onSnapshot((snapshot) => {
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          post: doc.data(),
-        }))
-      );
-    });
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            post: doc.data(),
+          }))
+        );
+      });
   }, []);
 
   useEffect(() => {
