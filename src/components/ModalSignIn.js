@@ -21,6 +21,7 @@ const style = {
 
 function ModalSignIn({
   open,
+  signIn,
   setOpen,
   user,
   setUser,
@@ -34,16 +35,6 @@ function ModalSignIn({
   //   const [email, setEmail] = useState("");
   //   const [password, setPassword] = useState("");
   //   const [user, setUser] = useState(null);
-
-  const signIn = (event) => {
-    event.preventDefault();
-
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => alert(error.message));
-
-    setOpen(false);
-  };
 
   return (
     <>

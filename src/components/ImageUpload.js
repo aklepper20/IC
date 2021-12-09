@@ -7,7 +7,7 @@ import "firebase/compat/firestore";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 
-function ImageUpload() {
+function ImageUpload({ username }) {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
@@ -19,7 +19,7 @@ function ImageUpload() {
     }
   };
 
-  const handleUpload = ({ username }) => {
+  const handleUpload = () => {
     //push to firebase w storage
     //get a reference to this photo and put it to the one we uploaded. put the image into fb
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -51,12 +51,16 @@ function ImageUpload() {
               imageUrl: url,
               username: username,
             });
+            setProgress(0);
+            setCaption("");
+            setImage(null);
           });
       }
     );
   };
   return (
     <Container>
+      <progress value={progress} max="100" />
       <InputText
         type="text"
         value={caption}
@@ -64,7 +68,7 @@ function ImageUpload() {
         placeholder="Enter a caption..."
       ></InputText>
       <InputFilePicker type="file" onChange={handleChange}></InputFilePicker>
-      <UploadButton onClick={handleUpload}></UploadButton>
+      <UploadButton onClick={handleUpload}>Upload</UploadButton>
     </Container>
   );
 }

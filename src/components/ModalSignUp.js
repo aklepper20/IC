@@ -27,23 +27,23 @@ function ModalSignUp({
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    //listens for any user change/update it changes in db
-    const unsubsribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        //user has logged in
-        console.log(authUser);
-        setUser(authUser);
-      } else {
-        //user has logged out
-        setUser(null);
-      }
-    });
-    return () => {
-      //perfom some cleanup actions
-      unsubsribe();
-    };
-  }, [user, username]);
+  // useEffect(() => {
+  //   //listens for any user change/update it changes in db
+  //   const unsubsribe = auth.onAuthStateChanged((authUser) => {
+  //     if (authUser) {
+  //       //user has logged in
+  //       console.log(authUser);
+  //       setUser(authUser);
+  //     } else {
+  //       //user has logged out
+  //       setUser(null);
+  //     }
+  //   });
+  //   return () => {
+  //     //perfom some cleanup actions
+  //     unsubsribe();
+  //   };
+  // }, [user, username]);
 
   const style = {
     position: "absolute",
