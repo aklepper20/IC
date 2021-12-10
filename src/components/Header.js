@@ -18,6 +18,9 @@ const HeaderBar = styled.div`
   padding-left: 20px;
   background-color: white;
   border-bottom: 1px solid lightgray;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   img {
     width: 60px;
     height: 60px;
