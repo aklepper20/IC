@@ -66,17 +66,24 @@ function Post({ username, caption, imageUrl, postId, user }) {
           </p>
         ))}
       </CommentBox>
-      <CommentForm>
-        <CommentInput
-          type="text"
-          placeholder="Write a comment"
-          value={singleComment}
-          onChange={(e) => setSingleComment(e.target.value)}
-        ></CommentInput>
-        <CommentButton disabled={!comments} type="submit" onClick={postComment}>
-          Post
-        </CommentButton>
-      </CommentForm>
+
+      {user && (
+        <CommentForm>
+          <CommentInput
+            type="text"
+            placeholder="Write a comment"
+            value={singleComment}
+            onChange={(e) => setSingleComment(e.target.value)}
+          ></CommentInput>
+          <CommentButton
+            disabled={!comments}
+            type="submit"
+            onClick={postComment}
+          >
+            Post
+          </CommentButton>
+        </CommentForm>
+      )}
     </Container>
   );
 }
