@@ -3,8 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Avatar } from "@mui/material";
 import { db } from "../firebase";
+import "firebase/compat/firestore";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
-function Post({ username, caption, imageUrl, postId }) {
+function Post({ username, caption, imageUrl, postId, user }) {
   const [comments, setComments] = useState([]);
   const [singleComment, setSingleComment] = useState("");
 
@@ -15,6 +18,7 @@ function Post({ username, caption, imageUrl, postId }) {
         .collection("posts")
         .doc(postId)
         .collection("comments")
+        .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
           setComments(snapshot.docs.map((doc) => doc.data()));
         });
@@ -25,7 +29,16 @@ function Post({ username, caption, imageUrl, postId }) {
     };
   }, [postId]);
 
-  const postComment = (event) => {};
+  const postComment = (event) => {
+    event.preventDefault();
+
+    db.collection("posts").doc(postId).collection("comments").add({
+      text: singleComment,
+      username: user.displayName,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setSingleComment("");
+  };
 
   return (
     <Container>

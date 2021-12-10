@@ -99,6 +99,7 @@ function App() {
             imageUrl={post.imageUrl}
             key={id}
             postId={id}
+            user={user}
           />
         );
       })}
