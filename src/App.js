@@ -90,11 +90,6 @@ function App() {
         password={password}
         setPassword={setPassword}
       />
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-        <h3>Please Log in!</h3>
-      )}
 
       {posts.map(({ post, id }) => {
         return (
@@ -106,6 +101,11 @@ function App() {
           />
         );
       })}
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+        <h3>Please Log in!</h3>
+      )}
     </Container>
   );
 }

@@ -25,4 +25,6 @@ const HeaderBar = styled.div`
   }
 `;
 
+const LoginContainer = styled.div``;
+
 export default Header;

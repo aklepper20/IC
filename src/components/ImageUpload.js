@@ -73,7 +73,18 @@ function ImageUpload({ username }) {
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+`;
+
 const InputText = styled.input``;
 const InputFilePicker = styled.input``;
 const UploadButton = styled.button``;

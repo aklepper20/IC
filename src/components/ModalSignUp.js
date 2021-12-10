@@ -111,6 +111,7 @@ function ModalSignUp({
           </SignUpContainer>
         </Box>
       </Modal>
+
       {user ? (
         <Button onClick={() => auth.signOut()}>LOGOUT</Button>
       ) : (
