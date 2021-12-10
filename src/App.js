@@ -98,6 +98,7 @@ function App() {
             username={post.username}
             imageUrl={post.imageUrl}
             key={id}
+            postId={id}
           />
         );
       })}
