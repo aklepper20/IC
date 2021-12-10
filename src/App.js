@@ -77,14 +77,14 @@ function App() {
     <Container>
       <Header />
       <ModalSignUp
-        open={open}
-        setOpen={setOpen}
         signUp={signUp}
         signIn={signIn}
         user={user}
+        open={open}
+        setOpen={setOpen}
         setUser={setUser}
         username={username}
-        setUser={setUsername}
+        setUsername={setUsername}
         email={email}
         setEmail={setEmail}
         password={password}

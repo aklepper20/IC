@@ -8,10 +8,10 @@ import { db, auth } from "../firebase";
 import ModalSignIn from "./ModalSignIn";
 
 function ModalSignUp({
+  signIn,
+  signUp,
   open,
   setOpen,
-  signUp,
-  signIn,
   user,
   setUser,
   username,
@@ -21,12 +21,6 @@ function ModalSignUp({
   password,
   setPassword,
 }) {
-  // const [open, setOpen] = useState(false);
-  // const [openSignIn, setOpenSignIn] = useState(false);
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
   // useEffect(() => {
   //   //listens for any user change/update it changes in db
   //   const unsubsribe = auth.onAuthStateChanged((authUser) => {
@@ -58,20 +52,7 @@ function ModalSignUp({
     borderRadius: "5px",
   };
 
-  // const signUp = (event) => {
-  //   event.preventDefault();
-
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then((authUser) => {
-  //       return authUser.user.updateProfile({
-  //         displayName: username,
-  //       });
-  //     })
-  //     .catch((error) => alert(error.message));
-
-  //   setOpen(false);
-  // };
+  const [openLogin, setOpenLogin] = useState(false);
 
   return (
     <>
@@ -118,8 +99,8 @@ function ModalSignUp({
         <LoginContainer>
           <ModalSignIn
             signIn={signIn}
-            open={open}
-            setOpen={setOpen}
+            openLogin={openLogin}
+            setOpenLogin={setOpenLogin}
             user={user}
             setUser={setUser}
             email={email}
