@@ -5,7 +5,7 @@ import { Avatar } from "@mui/material";
 import { db } from "../firebase";
 
 function Post({ username, caption, imageUrl, postId }) {
-  const [comment, setComment] = useState([]);
+  const [comments, setComments] = useState([]);
   const [singleComment, setSingleComment] = useState("");
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function Post({ username, caption, imageUrl, postId }) {
         .doc(postId)
         .collection("comments")
         .onSnapshot((snapshot) => {
-          setComment(snapshot.docs.map((doc) => doc.data()));
+          setComments(snapshot.docs.map((doc) => doc.data()));
         });
     }
 
@@ -46,6 +46,13 @@ function Post({ username, caption, imageUrl, postId }) {
           </strong>
         </h4>
       </UserCaption>
+      <CommentBox>
+        {comments.map((comment) => (
+          <p>
+            <strong>{comment.username}</strong> {comment.text}
+          </p>
+        ))}
+      </CommentBox>
       <CommentForm>
         <CommentInput
           type="text"
@@ -53,7 +60,7 @@ function Post({ username, caption, imageUrl, postId }) {
           value={singleComment}
           onChange={(e) => setSingleComment(e.target.value)}
         ></CommentInput>
-        <CommentButton disabled={!comment} type="submit" onClick={postComment}>
+        <CommentButton disabled={!comments} type="submit" onClick={postComment}>
           Post
         </CommentButton>
       </CommentForm>
@@ -94,9 +101,26 @@ const UserCaption = styled.div`
   }
 `;
 
-const CommentForm = styled.form``;
+const CommentForm = styled.form`
+  display: flex;
 
-const CommentInput = styled.input``;
+  margin-top: 10px;
+`;
 
-const CommentButton = styled.button``;
+const CommentInput = styled.input`
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border: 1px solid lightgray;
+`;
+
+const CommentButton = styled.button`
+  flex: 0;
+  border: none;
+  border: 1px solid lightgray;
+  background-color: transparent;
+  color: #6082a3;
+`;
+
+const CommentBox = styled.div``;
 export default Post;
